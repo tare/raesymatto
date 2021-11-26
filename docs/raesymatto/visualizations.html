@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>raesymatto.visualizations API documentation</title>
+<meta name="description" content="Visualization related functions." />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>raesymatto.visualizations</code></h1>
+</header>
+<section id="section-intro">
+<p>Visualization related functions.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Visualization related functions.
+&#34;&#34;&#34;
+import logging
+from typing import Optional, Tuple
+
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import pandas as pd
+
+import pyBigWig
+
+from raesymatto.utils import Units
+
+def hide_frame(ax:plt.Axes) -&gt; None:
+    &#34;&#34;&#34;Hides spines.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;left&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;bottom&#39;].set_color(&#39;none&#39;)
+
+def draw_region_information(ax:plt.Axes,chromosome:str,
+                            start:int,end:int,fontsize:int=7,
+                            kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws region information.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        fontsize (int): Font size.
+        kwargs (Optional[dict]): Additional arguments passed to Axes.arrow.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;lw&#39;:0.25}
+
+    # region text
+    ax.text((end+start)*0.5,2.5,&#39;%s:%s-%s&#39;%(chromosome,
+                                            &#39;{:,d}&#39;.format(start),
+                                            &#39;{:,d}&#39;.format(end)),
+            va=&#39;center&#39;,ha=&#39;center&#39;,fontsize=fontsize)
+
+    # scale bar with the tee arrow heads
+    scalebar_length = (10**(len(&#39;%.0f&#39;%((end-start)*0.2))-1)*
+                       np.round(((end-start)*0.2)/
+                                10**(len(&#39;%.0f&#39;%((end-start)*0.2))-1)))
+    # arrow body
+    ax.arrow(x=end-scalebar_length-0.05,y=1,
+             dx=scalebar_length,dy=0,**kwargs)
+    # tee arrow heads
+    ax.arrow(x=end-0.05,y=1.25,dx=0,dy=-0.5,**kwargs)
+    ax.arrow(x=end-scalebar_length-0.05,y=1.25,dx=0,dy=-0.5,**kwargs)
+
+    # label the scale bar
+    multiplier,prefix = (Units(
+        overrides={-2:{&#39;multiplier&#39;:1e-0,
+                       &#39;prefix&#39;:&#39;&#39;},
+                   -1:{&#39;multiplier&#39;:1e-0,
+                       &#39;prefix&#39;:&#39;&#39;},
+                   1:{&#39;multiplier&#39;:1e-0,
+                      &#39;prefix&#39;:&#39;&#39;},
+                   2:{&#39;multiplier&#39;:1e-0,
+                      &#39;prefix&#39;:&#39;&#39;}})
+                         .convert(scalebar_length))
+    ax.text(x=end-scalebar_length-(end-start)*0.01,
+            y=1,
+            s=&#39;%.0f %sb&#39;%(multiplier,prefix),
+            ha=&#39;right&#39;,va=&#39;center&#39;,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_ylim(0,5)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    hide_frame(ax)
+
+def draw_bw(ax:plt.Axes,chromosome:str,start:int,end:int,
+            bw:pyBigWig.pyBigWig,ymin:Optional[float]=None,
+            ymax:Optional[float]=None,xspine:Optional[float]=None,
+            skip:int=1,fontsize:int=7,ylabel:Optional[str]=None,
+            label:Optional[str]=None,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws bigWig data.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bw (pyBigWig.pybigWig): bigWig object.
+        ymin (Optional[float]): Bottom of y axis.
+        ymax (Optional[float]): Top of y axis.
+        xspine (Optional[float]): Location for x spine.
+        skip (int): Visualize every skip-th value. Useful for downsampling.
+        fontsize (int): Font size.
+        ylabel (Optional[str]): Y axis label.
+        label (Optional[str]): Legend label.
+        kwargs (Optional[dict]): Additional arguments passed
+            to Axes.fill_between.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;facecolor&#39;:&#39;gray&#39;,
+                  &#39;alpha&#39;:1.0,
+                  &#39;lw&#39;:0.1}
+
+    ax.fill_between(x=np.array(range(start,end))[::skip],
+                    y1=bw.values(chromosome,start,end)[::skip],
+                    label=label,**kwargs)
+
+    ax.set_ylabel(ylabel,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_xticks([])
+    ax.set_ylim(bottom=ymin,top=ymax)
+    ax.tick_params(axis=&#39;y&#39;,labelsize=fontsize)
+
+    ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+
+    if xspine is not None:
+        ax.spines[&#39;bottom&#39;].set_position((&#39;data&#39;,xspine))
+
+def draw_bed(ax:plt.Axes,chromosome:str,start:int,end:int,
+             bed:pd.DataFrame,fontsize=7,label:Optional[str]=None,
+             frame:bool=True,scores:bool=False,cmap:str=&#39;Greys&#39;,
+             vmin:Optional[float]=None,vmax:Optional[float]=None,
+             spacing:int=1,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws genomics regions defined using the BED format.
+
+    Score defines the color. Does not take into account strand
+    information at the moment.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bed (pd.DataFrame): Data in Browser Extensible Data (BED) format.
+        fontsize (int): Font size.
+        label (Optional[str]): Y axis label.
+        frame (bool): Draw spines.
+        scores (bool): Color the BED lines.
+        cmap (str): Colormap to be used when coloring the BED lines.
+        vmin (Optional[float]): Minimum score.
+        vmax (Optional[float]): Maximum score.
+        spacing (int): Spacing between rows of elements.
+        kwargs (Optional[dict]): Additional arguments passed
+            to mpl.patches.Rectangle.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;facecolor&#39;:&#39;gray&#39;,
+                  &#39;edgecolor&#39;:&#39;gray&#39;,
+                  &#39;alpha&#39;:1.0,
+                  &#39;lw&#39;:0.0}
+
+    def distribute_intervals(intervals):
+        levels = []
+        for interval_idx in range(0,intervals.shape[0]):
+            found_place = False
+            for level_idx in range(0,len(levels)):
+                if levels[level_idx][-1][2] &lt; intervals[interval_idx][1]:
+                    levels[level_idx].append(intervals[interval_idx])
+                    found_place = True
+                    break
+            if not found_place:
+                levels.append([intervals[interval_idx]])
+        return levels
+
+    intervals = (bed[(bed.iloc[:,0] == chromosome) &amp;
+                     (((bed.iloc[:,1] &gt;= start) &amp;
+                       (bed.iloc[:,1] &lt;= end)) |
+                     ((bed.iloc[:,2] &gt;= start) &amp;
+                      (bed.iloc[:,2] &lt;= end)) |
+                     ((start &gt;= bed.iloc[:,[1,2]].min(axis=1)) &amp;
+                      (end &lt;= bed.iloc[:,[1,2]].max(axis=1))))].values)
+
+    if intervals.shape[0] &gt; 0:
+        intervals = intervals[np.lexsort((-(intervals[:,2]-
+                                            intervals[:,1]),
+                                          intervals[:,1])),:]
+
+    levels = distribute_intervals(intervals)
+
+    if intervals.shape[0] &gt; 0 and scores:
+        if vmin is None:
+            vmin = intervals[:,4].min()
+        if vmax is None:
+            vmax = intervals[:,4].max()
+
+        norm = mpl.colors.Normalize(vmin=vmin,vmax=vmax)
+        color = mpl.cm.get_cmap(cmap)
+
+        # if score == True, then user-specified facecolor
+        # or fc should not be used
+        if &#39;facecolor&#39; in kwargs or &#39;fc&#39; in kwargs:
+            logging.warning(&#39;facecolor/fc removed from kwargs &#39;
+                            &#39;as scores == True&#39;)
+            kwargs.pop(&#39;facecolor&#39;,None)
+            kwargs.pop(&#39;fc&#39;,None)
+
+    for idx,level in enumerate(levels):
+        for region in level:
+            if not scores:
+                rect = mpl.patches.Rectangle(xy=(region[1],spacing*idx-0.25),
+                                             width=region[2]-region[1],
+                                             height=0.5,**kwargs)
+            else:
+                # get the color of the current region
+                kwargs[&#39;facecolor&#39;] = color(norm(region[4]))
+                rect = mpl.patches.Rectangle(xy=(region[1],spacing*idx-0.25),
+                                             width=region[2]-region[1],
+                                             height=0.5,
+                                             **kwargs)
+            ax.add_patch(rect)
+
+    if len(levels) &gt; 0:
+        ax.set_ylim(-0.5,spacing*(len(levels)-1)+0.5)
+    else:
+        logging.warning(&#39;No regions found!&#39;)
+
+    ax.set_ylabel(label,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_ylim(ax.get_ylim()[::-1])
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    if not frame:
+        hide_frame(ax)
+
+def draw_boxes(ax:plt.Axes,chromosome:str,start:int,end:int,
+               bed:pd.DataFrame,fontsize:int=7,
+               ylabel:Optional[dict]=None,vmin:Optional[float]=None,
+               vmax:Optional[float]=None,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws genomics regions defined using the BED format.
+
+    Score defines the height. Does not take into account strand
+    information at the moment.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bed (pd.DataFrame): Data in Browser Extensible Data (BED) format.
+        fontsize (int): Font size.
+        ylabel (Optional[str]): Y axis label.
+        vmin (Optional[float]): Minimum score.
+        vmax (Optional[float]): Maximum score.
+        kwargs (Optional[dict]): Additional arguments passed
+            to mpl.patches.Rectangle.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;facecolor&#39;:&#39;gray&#39;,
+                  &#39;edgecolor&#39;:&#39;gray&#39;,
+                  &#39;alpha&#39;:1.0,
+                  &#39;lw&#39;:0.0}
+
+    intervals = (bed[(bed.iloc[:,0] == chromosome) &amp;
+                     (((bed.iloc[:,1] &gt;= start) &amp;
+                       (bed.iloc[:,1] &lt;= end)) |
+                      ((bed.iloc[:,2] &gt;= start) &amp;
+                       (bed.iloc[:,2] &lt;= end)) |
+                      ((start &gt;= bed.iloc[:,[1,2]].min(axis=1)) &amp;
+                       (end &lt;= bed.iloc[:,[1,2]].max(axis=1))))])
+
+    for _,interval in intervals.iterrows():
+        rect = mpl.patches.Rectangle(xy=(interval.iloc[1],0),
+                                     width=(interval.iloc[2]-
+                                            interval.iloc[1]),
+                                     height=interval.iloc[4],
+                                     **kwargs)
+        ax.add_patch(rect)
+
+    if intervals.shape[0] &gt; 0:
+        ax.set_ylim(bottom=0,top=intervals.iloc[:,4].max())
+
+    ax.set_ylabel(ylabel,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_ylim(bottom=vmin,top=vmax)
+    ax.set_xticks([])
+
+    ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+
+def draw_loops(ax:plt.Axes,chromosome:str,start:int,end:int,
+               bed:pd.DataFrame,fontsize:int=7,
+               ymin:float=1,ymax:float=10,flip:bool=False,
+               frame:bool=True,ylabel:Optional[str]=None,
+               kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws loops.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bed (pd.DataFrame): Data in Browser Extensible Data (BED) format.
+        fontsize: Font size.
+        ymin (float): Minimum loop height.
+        ymax (float): Maximum loop height.
+        flip (bool): Flip the y axis.
+        frame (bool): Draw spines.
+        ylabel (Optional[str]): Y axis label.
+        kwargs (Optional[dict]): Additional arguments passed
+            to mpl.patches.PathPatch.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;lw&#39;:0.5,
+                  &#39;ec&#39;:&#39;red&#39;,
+                  &#39;fc&#39;: &#39;none&#39;,
+                  &#39;alpha&#39;:1.0}
+
+    intervals = bed[(bed.iloc[:,0] == chromosome) &amp;
+                    (((bed.iloc[:,1] &gt;= start) &amp;
+                      (bed.iloc[:,1] &lt;= end)) |
+                     ((bed.iloc[:,2] &gt;= start) &amp;
+                      (bed.iloc[:,2] &lt;= end)) |
+                     ((start &gt;= bed.iloc[:,[1,2]].min(axis=1)) &amp;
+                      (end &lt;= bed.iloc[:,[1,2]].max(axis=1))))].values
+
+    length_max = (intervals[:,2]-intervals[:,1]).max()
+
+    Path = mpl.path.Path
+    for interval in intervals:
+        pp = (mpl.patches
+              .PathPatch(Path([(interval[1],0),
+                               ((interval[1]+interval[2])/2,
+                                max([ymin,2.0*ymax*
+                                     (interval[2]-interval[1])/
+                                     length_max])),
+                               (interval[2],0)],[Path.MOVETO,
+                                                 Path.CURVE3,
+                                                 Path.CURVE3]),
+                         transform=ax.transData,
+                         **kwargs))
+        ax.add_patch(pp)
+
+    ax.set_ylabel(ylabel,fontsize=fontsize)
+
+    ax.set_xlim([start,end])
+    ax.set_ylim([0,ymax*1.05])
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    if flip:
+        ax.invert_yaxis()
+
+    if not frame:
+        hide_frame(ax)
+
+def draw_gene_models(ax:plt.Axes,chromosome:str,start:int,end:int,
+                     genes:pd.DataFrame,min_height:int=None,
+                     gene_name_field:str=&#39;gene_id&#39;,fontsize:int=7,
+                     frame:bool=True,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws gene models.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        genes (pd.DataFrame): Gene definitions in General Transfer
+            Format (GTF).
+        min_height (Optional[int]): Minimum number of gene tracks.
+            This can be used to have predictable gene heights.
+        gene_name_field (str): Name of the column to be used
+            when labeling genes.
+        fontsize (int): Font size.
+        frame (bool): Draw spines.
+        kwargs (Optional[dict]): Additional arguments passed to Axes.text.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;ha&#39;:&#39;center&#39;,
+                      &#39;va&#39;:&#39;center&#39;,
+                      &#39;fontsize&#39;:fontsize,
+                      &#39;style&#39;:&#39;italic&#39;}
+
+    def draw_name(ax:plt.Axes,position:Tuple[float,float],
+                  name:str,kwargs:Optional[dict]=None) -&gt; None:
+        &#34;&#34;&#34;Draws gene name.
+
+        Args:
+            ax (matplotlib.pyplot.axis): Axes to be used.
+            position (Tuple[float,float]): Position.
+            name (str): Name.
+            kwargs (dict): Additional arguments passed to Axes.text.
+        &#34;&#34;&#34;
+        if kwargs is None:
+            kwargs = {&#39;ha&#39;:&#39;center&#39;,
+                      &#39;va&#39;:&#39;center&#39;,
+                      &#39;fontsize&#39;:fontsize,
+                      &#39;style&#39;:&#39;italic&#39;}
+
+        ax.text(position[0],position[1],
+                name,**kwargs)
+
+    def draw_rectangle(ax:plt.Axes,xy:Tuple[float,float],
+                       width:float,height:float,
+                       kwargs:Optional[dict]=None) -&gt; None:
+        &#34;&#34;&#34;Draws rectangle.
+
+        Args:
+            ax (plt.Axes): Axes to be used.
+            xy (Tuple[float,float]): The anchor point.
+            width (float): Width of the rectangle.
+            height (float): Height of the rectangle.
+            kwargs (Optional[dict]): Additional arguments
+                passed to mpl.patch.Rectangle.
+
+        Returns:
+
+        Raises:
+        &#34;&#34;&#34;
+        if kwargs is None:
+            kwargs = {&#39;linewidth&#39;:0,
+                      &#39;edgecolor&#39;:&#39;k&#39;,
+                      &#39;facecolor&#39;:&#39;k&#39;}
+
+        rectangle = mpl.patches.Rectangle(xy=xy,
+                                          width=width,
+                                          height=height,
+                                          **kwargs)
+        ax.add_patch(rectangle)
+
+    tmp = (genes[[&#39;transcript_id&#39;,&#39;seqname&#39;,&#39;start&#39;,&#39;end&#39;]]
+           .groupby([&#39;transcript_id&#39;,&#39;seqname&#39;])
+           .agg({&#39;start&#39;:&#39;min&#39;,&#39;end&#39;:&#39;max&#39;})
+           .reset_index())
+
+    # transcripts completely within in the region of interest
+    tmp = tmp[(tmp[&#39;seqname&#39;]== chromosome) &amp;
+              ((start &gt;= tmp[&#39;start&#39;]) &amp;
+               (end &lt;= tmp[&#39;end&#39;]))][&#39;transcript_id&#39;].values
+
+    # transcripts partially within in the region of interest
+    tmp2 = genes[(genes[&#39;seqname&#39;] == chromosome) &amp;
+            (((genes[&#39;start&#39;] &gt;= start) &amp;
+              (genes[&#39;start&#39;] &lt;= end)) |
+             ((genes[&#39;end&#39;] &gt;= start) &amp;
+              (genes[&#39;end&#39;] &lt;= end)))][&#39;transcript_id&#39;].values
+
+    transcript_ids = np.union1d(tmp,tmp2)
+
+    for n,transcript_id in enumerate(transcript_ids):
+
+        pieces = genes[genes[&#39;transcript_id&#39;] == transcript_id]
+        tmp = genes[genes[&#39;transcript_id&#39;] == transcript_id]
+
+        draw_rectangle(ax,(tmp[&#39;start&#39;].min(),n-0.025),
+                       tmp[&#39;start&#39;].max()-tmp[&#39;start&#39;].min(),
+                       0.05)
+
+        # draw arrow heads to represent the directionality
+        current_position = (max(tmp[&#39;start&#39;].min(),start)+
+                            0.01*(end-start))
+        while current_position &lt;= min(end,tmp[&#39;start&#39;].max()):
+            if tmp[&#39;strand&#39;].iloc[0] == &#39;+&#39;:
+                ax.plot([current_position-0.002*(end-start),
+                         current_position,
+                         current_position-0.002*(end-start)],
+                        [n+0.125,n,n-0.125],
+                        lw=0.1,c=&#39;k&#39;)
+            elif tmp[&#39;strand&#39;].iloc[0] == &#39;-&#39;:
+                ax.plot([current_position+0.002*(end-start),
+                         current_position,
+                         current_position+0.002*(end-start)],
+                        [n+0.125,n,n-0.125],
+                        lw=0.1,c=&#39;k&#39;)
+            current_position += 0.01*(end-start)
+
+        # draw gene name
+        # fits the region of interest
+        if tmp[&#39;start&#39;].min() &gt; start and tmp[&#39;end&#39;].max() &lt; end:
+            draw_name(ax,((tmp[&#39;end&#39;].max()+tmp[&#39;start&#39;].min())*0.5,
+                          n-0.5),
+                      pieces[gene_name_field].iloc[0],kwargs)
+        else: # does not fit the region of interest
+            if tmp[&#39;strand&#39;].iloc[0] == &#39;+&#39;:
+                if (tmp[&#39;start&#39;].min() &lt;= start and
+                    tmp[&#39;end&#39;].max() &gt;= end):
+                    draw_name(ax,((end+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;start&#39;].min() &lt;= start:
+                    draw_name(ax,((tmp[&#39;end&#39;].max()+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;start&#39;].max() &gt;= end:
+                    draw_name(ax,((end+tmp[&#39;start&#39;].min())*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+            else:
+                if (tmp[&#39;end&#39;].min() &lt;= start and
+                    tmp[&#39;start&#39;].max() &gt;= end):
+                    draw_name(ax,((end+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;start&#39;].max() &lt; end:
+                    draw_name(ax,((tmp[&#39;start&#39;].max()+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;end&#39;].min() &gt; start:
+                    draw_name(ax,((end+tmp[&#39;end&#39;].min())*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+
+        # draw exons and CDSs
+        for _,piece in pieces.iterrows():
+            if piece[&#39;feature&#39;] == &#39;exon&#39;:
+                draw_rectangle(ax,(piece[&#39;start&#39;],n-0.125),
+                               piece[&#39;end&#39;]-piece[&#39;start&#39;],
+                               0.25)
+            elif piece[&#39;feature&#39;] == &#39;CDS&#39;:
+                draw_rectangle(ax,(piece[&#39;start&#39;],n-0.25),
+                               piece[&#39;end&#39;]-piece[&#39;start&#39;],
+                               0.5)
+
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_xlim(start,end)
+    if min_height is not None:
+        if min_height &lt; len(transcript_ids):
+            logging.warning((&#39;%d genes would not be visible due &#39;
+                             &#39;to min_height=%d, discard min_height.&#39;),
+                            len(transcript_ids)-min_height,min_height)
+            ax.set_ylim(-0.5,min(len(transcript_ids),1)-0.5)
+        else:
+            ax.set_ylim(-(min_height-len(transcript_ids))-0.5,
+                        len(transcript_ids)-0.5)
+    else:
+        ax.set_ylim(-0.5,min(len(transcript_ids),1)-0.5)
+
+    if not frame:
+        hide_frame(ax)
+        </code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="raesymatto.visualizations.draw_bed"><code class="name flex">
+<span>def <span class="ident">draw_bed</span></span>(<span>ax: matplotlib.axes._axes.Axes, chromosome: str, start: int, end: int, bed: pandas.core.frame.DataFrame, fontsize=7, label: Optional[str] = None, frame: bool = True, scores: bool = False, cmap: str = 'Greys', vmin: Optional[float] = None, vmax: Optional[float] = None, spacing: int = 1, kwargs: Optional[dict] = None) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws genomics regions defined using the BED format.</p>
+<p>Score defines the color. Does not take into account strand
+information at the moment.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>plt.Axes</code></dt>
+<dd>Axes to be used.</dd>
+<dt><strong><code>chromosome</code></strong> :&ensp;<code>str</code></dt>
+<dd>Chromosome of interest.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>Start coordinate.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>End coordinate.</dd>
+<dt><strong><code>bed</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Data in Browser Extensible Data (BED) format.</dd>
+<dt><strong><code>fontsize</code></strong> :&ensp;<code>int</code></dt>
+<dd>Font size.</dd>
+<dt><strong><code>label</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>Y axis label.</dd>
+<dt><strong><code>frame</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Draw spines.</dd>
+<dt><strong><code>scores</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Color the BED lines.</dd>
+<dt><strong><code>cmap</code></strong> :&ensp;<code>str</code></dt>
+<dd>Colormap to be used when coloring the BED lines.</dd>
+<dt><strong><code>vmin</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>Minimum score.</dd>
+<dt><strong><code>vmax</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>Maximum score.</dd>
+<dt><strong><code>spacing</code></strong> :&ensp;<code>int</code></dt>
+<dd>Spacing between rows of elements.</dd>
+<dt><strong><code>kwargs</code></strong> :&ensp;<code>Optional[dict]</code></dt>
+<dd>Additional arguments passed
+to mpl.patches.Rectangle.</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_bed(ax:plt.Axes,chromosome:str,start:int,end:int,
+             bed:pd.DataFrame,fontsize=7,label:Optional[str]=None,
+             frame:bool=True,scores:bool=False,cmap:str=&#39;Greys&#39;,
+             vmin:Optional[float]=None,vmax:Optional[float]=None,
+             spacing:int=1,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws genomics regions defined using the BED format.
+
+    Score defines the color. Does not take into account strand
+    information at the moment.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bed (pd.DataFrame): Data in Browser Extensible Data (BED) format.
+        fontsize (int): Font size.
+        label (Optional[str]): Y axis label.
+        frame (bool): Draw spines.
+        scores (bool): Color the BED lines.
+        cmap (str): Colormap to be used when coloring the BED lines.
+        vmin (Optional[float]): Minimum score.
+        vmax (Optional[float]): Maximum score.
+        spacing (int): Spacing between rows of elements.
+        kwargs (Optional[dict]): Additional arguments passed
+            to mpl.patches.Rectangle.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;facecolor&#39;:&#39;gray&#39;,
+                  &#39;edgecolor&#39;:&#39;gray&#39;,
+                  &#39;alpha&#39;:1.0,
+                  &#39;lw&#39;:0.0}
+
+    def distribute_intervals(intervals):
+        levels = []
+        for interval_idx in range(0,intervals.shape[0]):
+            found_place = False
+            for level_idx in range(0,len(levels)):
+                if levels[level_idx][-1][2] &lt; intervals[interval_idx][1]:
+                    levels[level_idx].append(intervals[interval_idx])
+                    found_place = True
+                    break
+            if not found_place:
+                levels.append([intervals[interval_idx]])
+        return levels
+
+    intervals = (bed[(bed.iloc[:,0] == chromosome) &amp;
+                     (((bed.iloc[:,1] &gt;= start) &amp;
+                       (bed.iloc[:,1] &lt;= end)) |
+                     ((bed.iloc[:,2] &gt;= start) &amp;
+                      (bed.iloc[:,2] &lt;= end)) |
+                     ((start &gt;= bed.iloc[:,[1,2]].min(axis=1)) &amp;
+                      (end &lt;= bed.iloc[:,[1,2]].max(axis=1))))].values)
+
+    if intervals.shape[0] &gt; 0:
+        intervals = intervals[np.lexsort((-(intervals[:,2]-
+                                            intervals[:,1]),
+                                          intervals[:,1])),:]
+
+    levels = distribute_intervals(intervals)
+
+    if intervals.shape[0] &gt; 0 and scores:
+        if vmin is None:
+            vmin = intervals[:,4].min()
+        if vmax is None:
+            vmax = intervals[:,4].max()
+
+        norm = mpl.colors.Normalize(vmin=vmin,vmax=vmax)
+        color = mpl.cm.get_cmap(cmap)
+
+        # if score == True, then user-specified facecolor
+        # or fc should not be used
+        if &#39;facecolor&#39; in kwargs or &#39;fc&#39; in kwargs:
+            logging.warning(&#39;facecolor/fc removed from kwargs &#39;
+                            &#39;as scores == True&#39;)
+            kwargs.pop(&#39;facecolor&#39;,None)
+            kwargs.pop(&#39;fc&#39;,None)
+
+    for idx,level in enumerate(levels):
+        for region in level:
+            if not scores:
+                rect = mpl.patches.Rectangle(xy=(region[1],spacing*idx-0.25),
+                                             width=region[2]-region[1],
+                                             height=0.5,**kwargs)
+            else:
+                # get the color of the current region
+                kwargs[&#39;facecolor&#39;] = color(norm(region[4]))
+                rect = mpl.patches.Rectangle(xy=(region[1],spacing*idx-0.25),
+                                             width=region[2]-region[1],
+                                             height=0.5,
+                                             **kwargs)
+            ax.add_patch(rect)
+
+    if len(levels) &gt; 0:
+        ax.set_ylim(-0.5,spacing*(len(levels)-1)+0.5)
+    else:
+        logging.warning(&#39;No regions found!&#39;)
+
+    ax.set_ylabel(label,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_ylim(ax.get_ylim()[::-1])
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    if not frame:
+        hide_frame(ax)</code></pre>
+</details>
+</dd>
+<dt id="raesymatto.visualizations.draw_boxes"><code class="name flex">
+<span>def <span class="ident">draw_boxes</span></span>(<span>ax: matplotlib.axes._axes.Axes, chromosome: str, start: int, end: int, bed: pandas.core.frame.DataFrame, fontsize: int = 7, ylabel: Optional[dict] = None, vmin: Optional[float] = None, vmax: Optional[float] = None, kwargs: Optional[dict] = None) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws genomics regions defined using the BED format.</p>
+<p>Score defines the height. Does not take into account strand
+information at the moment.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>plt.Axes</code></dt>
+<dd>Axes to be used.</dd>
+<dt><strong><code>chromosome</code></strong> :&ensp;<code>str</code></dt>
+<dd>Chromosome of interest.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>Start coordinate.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>End coordinate.</dd>
+<dt><strong><code>bed</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Data in Browser Extensible Data (BED) format.</dd>
+<dt><strong><code>fontsize</code></strong> :&ensp;<code>int</code></dt>
+<dd>Font size.</dd>
+<dt><strong><code>ylabel</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>Y axis label.</dd>
+<dt><strong><code>vmin</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>Minimum score.</dd>
+<dt><strong><code>vmax</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>Maximum score.</dd>
+<dt><strong><code>kwargs</code></strong> :&ensp;<code>Optional[dict]</code></dt>
+<dd>Additional arguments passed
+to mpl.patches.Rectangle.</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_boxes(ax:plt.Axes,chromosome:str,start:int,end:int,
+               bed:pd.DataFrame,fontsize:int=7,
+               ylabel:Optional[dict]=None,vmin:Optional[float]=None,
+               vmax:Optional[float]=None,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws genomics regions defined using the BED format.
+
+    Score defines the height. Does not take into account strand
+    information at the moment.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bed (pd.DataFrame): Data in Browser Extensible Data (BED) format.
+        fontsize (int): Font size.
+        ylabel (Optional[str]): Y axis label.
+        vmin (Optional[float]): Minimum score.
+        vmax (Optional[float]): Maximum score.
+        kwargs (Optional[dict]): Additional arguments passed
+            to mpl.patches.Rectangle.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;facecolor&#39;:&#39;gray&#39;,
+                  &#39;edgecolor&#39;:&#39;gray&#39;,
+                  &#39;alpha&#39;:1.0,
+                  &#39;lw&#39;:0.0}
+
+    intervals = (bed[(bed.iloc[:,0] == chromosome) &amp;
+                     (((bed.iloc[:,1] &gt;= start) &amp;
+                       (bed.iloc[:,1] &lt;= end)) |
+                      ((bed.iloc[:,2] &gt;= start) &amp;
+                       (bed.iloc[:,2] &lt;= end)) |
+                      ((start &gt;= bed.iloc[:,[1,2]].min(axis=1)) &amp;
+                       (end &lt;= bed.iloc[:,[1,2]].max(axis=1))))])
+
+    for _,interval in intervals.iterrows():
+        rect = mpl.patches.Rectangle(xy=(interval.iloc[1],0),
+                                     width=(interval.iloc[2]-
+                                            interval.iloc[1]),
+                                     height=interval.iloc[4],
+                                     **kwargs)
+        ax.add_patch(rect)
+
+    if intervals.shape[0] &gt; 0:
+        ax.set_ylim(bottom=0,top=intervals.iloc[:,4].max())
+
+    ax.set_ylabel(ylabel,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_ylim(bottom=vmin,top=vmax)
+    ax.set_xticks([])
+
+    ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)</code></pre>
+</details>
+</dd>
+<dt id="raesymatto.visualizations.draw_bw"><code class="name flex">
+<span>def <span class="ident">draw_bw</span></span>(<span>ax: matplotlib.axes._axes.Axes, chromosome: str, start: int, end: int, bw: pyBigWig.bigWigFile, ymin: Optional[float] = None, ymax: Optional[float] = None, xspine: Optional[float] = None, skip: int = 1, fontsize: int = 7, ylabel: Optional[str] = None, label: Optional[str] = None, kwargs: Optional[dict] = None) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws bigWig data.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>plt.Axes</code></dt>
+<dd>Axes to be used.</dd>
+<dt><strong><code>chromosome</code></strong> :&ensp;<code>str</code></dt>
+<dd>Chromosome of interest.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>Start coordinate.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>End coordinate.</dd>
+<dt><strong><code>bw</code></strong> :&ensp;<code>pyBigWig.pybigWig</code></dt>
+<dd>bigWig object.</dd>
+<dt><strong><code>ymin</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>Bottom of y axis.</dd>
+<dt><strong><code>ymax</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>Top of y axis.</dd>
+<dt><strong><code>xspine</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>Location for x spine.</dd>
+<dt><strong><code>skip</code></strong> :&ensp;<code>int</code></dt>
+<dd>Visualize every skip-th value. Useful for downsampling.</dd>
+<dt><strong><code>fontsize</code></strong> :&ensp;<code>int</code></dt>
+<dd>Font size.</dd>
+<dt><strong><code>ylabel</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>Y axis label.</dd>
+<dt><strong><code>label</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>Legend label.</dd>
+<dt><strong><code>kwargs</code></strong> :&ensp;<code>Optional[dict]</code></dt>
+<dd>Additional arguments passed
+to Axes.fill_between.</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_bw(ax:plt.Axes,chromosome:str,start:int,end:int,
+            bw:pyBigWig.pyBigWig,ymin:Optional[float]=None,
+            ymax:Optional[float]=None,xspine:Optional[float]=None,
+            skip:int=1,fontsize:int=7,ylabel:Optional[str]=None,
+            label:Optional[str]=None,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws bigWig data.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bw (pyBigWig.pybigWig): bigWig object.
+        ymin (Optional[float]): Bottom of y axis.
+        ymax (Optional[float]): Top of y axis.
+        xspine (Optional[float]): Location for x spine.
+        skip (int): Visualize every skip-th value. Useful for downsampling.
+        fontsize (int): Font size.
+        ylabel (Optional[str]): Y axis label.
+        label (Optional[str]): Legend label.
+        kwargs (Optional[dict]): Additional arguments passed
+            to Axes.fill_between.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;facecolor&#39;:&#39;gray&#39;,
+                  &#39;alpha&#39;:1.0,
+                  &#39;lw&#39;:0.1}
+
+    ax.fill_between(x=np.array(range(start,end))[::skip],
+                    y1=bw.values(chromosome,start,end)[::skip],
+                    label=label,**kwargs)
+
+    ax.set_ylabel(ylabel,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_xticks([])
+    ax.set_ylim(bottom=ymin,top=ymax)
+    ax.tick_params(axis=&#39;y&#39;,labelsize=fontsize)
+
+    ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+
+    if xspine is not None:
+        ax.spines[&#39;bottom&#39;].set_position((&#39;data&#39;,xspine))</code></pre>
+</details>
+</dd>
+<dt id="raesymatto.visualizations.draw_gene_models"><code class="name flex">
+<span>def <span class="ident">draw_gene_models</span></span>(<span>ax: matplotlib.axes._axes.Axes, chromosome: str, start: int, end: int, genes: pandas.core.frame.DataFrame, min_height: int = None, gene_name_field: str = 'gene_id', fontsize: int = 7, frame: bool = True, kwargs: Optional[dict] = None) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws gene models.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>plt.Axes</code></dt>
+<dd>Axes to be used.</dd>
+<dt><strong><code>chromosome</code></strong> :&ensp;<code>str</code></dt>
+<dd>Chromosome of interest.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>Start coordinate.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>End coordinate.</dd>
+<dt><strong><code>genes</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Gene definitions in General Transfer
+Format (GTF).</dd>
+<dt><strong><code>min_height</code></strong> :&ensp;<code>Optional[int]</code></dt>
+<dd>Minimum number of gene tracks.
+This can be used to have predictable gene heights.</dd>
+<dt><strong><code>gene_name_field</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the column to be used
+when labeling genes.</dd>
+<dt><strong><code>fontsize</code></strong> :&ensp;<code>int</code></dt>
+<dd>Font size.</dd>
+<dt><strong><code>frame</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Draw spines.</dd>
+<dt><strong><code>kwargs</code></strong> :&ensp;<code>Optional[dict]</code></dt>
+<dd>Additional arguments passed to Axes.text.</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_gene_models(ax:plt.Axes,chromosome:str,start:int,end:int,
+                     genes:pd.DataFrame,min_height:int=None,
+                     gene_name_field:str=&#39;gene_id&#39;,fontsize:int=7,
+                     frame:bool=True,kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws gene models.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        genes (pd.DataFrame): Gene definitions in General Transfer
+            Format (GTF).
+        min_height (Optional[int]): Minimum number of gene tracks.
+            This can be used to have predictable gene heights.
+        gene_name_field (str): Name of the column to be used
+            when labeling genes.
+        fontsize (int): Font size.
+        frame (bool): Draw spines.
+        kwargs (Optional[dict]): Additional arguments passed to Axes.text.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;ha&#39;:&#39;center&#39;,
+                      &#39;va&#39;:&#39;center&#39;,
+                      &#39;fontsize&#39;:fontsize,
+                      &#39;style&#39;:&#39;italic&#39;}
+
+    def draw_name(ax:plt.Axes,position:Tuple[float,float],
+                  name:str,kwargs:Optional[dict]=None) -&gt; None:
+        &#34;&#34;&#34;Draws gene name.
+
+        Args:
+            ax (matplotlib.pyplot.axis): Axes to be used.
+            position (Tuple[float,float]): Position.
+            name (str): Name.
+            kwargs (dict): Additional arguments passed to Axes.text.
+        &#34;&#34;&#34;
+        if kwargs is None:
+            kwargs = {&#39;ha&#39;:&#39;center&#39;,
+                      &#39;va&#39;:&#39;center&#39;,
+                      &#39;fontsize&#39;:fontsize,
+                      &#39;style&#39;:&#39;italic&#39;}
+
+        ax.text(position[0],position[1],
+                name,**kwargs)
+
+    def draw_rectangle(ax:plt.Axes,xy:Tuple[float,float],
+                       width:float,height:float,
+                       kwargs:Optional[dict]=None) -&gt; None:
+        &#34;&#34;&#34;Draws rectangle.
+
+        Args:
+            ax (plt.Axes): Axes to be used.
+            xy (Tuple[float,float]): The anchor point.
+            width (float): Width of the rectangle.
+            height (float): Height of the rectangle.
+            kwargs (Optional[dict]): Additional arguments
+                passed to mpl.patch.Rectangle.
+
+        Returns:
+
+        Raises:
+        &#34;&#34;&#34;
+        if kwargs is None:
+            kwargs = {&#39;linewidth&#39;:0,
+                      &#39;edgecolor&#39;:&#39;k&#39;,
+                      &#39;facecolor&#39;:&#39;k&#39;}
+
+        rectangle = mpl.patches.Rectangle(xy=xy,
+                                          width=width,
+                                          height=height,
+                                          **kwargs)
+        ax.add_patch(rectangle)
+
+    tmp = (genes[[&#39;transcript_id&#39;,&#39;seqname&#39;,&#39;start&#39;,&#39;end&#39;]]
+           .groupby([&#39;transcript_id&#39;,&#39;seqname&#39;])
+           .agg({&#39;start&#39;:&#39;min&#39;,&#39;end&#39;:&#39;max&#39;})
+           .reset_index())
+
+    # transcripts completely within in the region of interest
+    tmp = tmp[(tmp[&#39;seqname&#39;]== chromosome) &amp;
+              ((start &gt;= tmp[&#39;start&#39;]) &amp;
+               (end &lt;= tmp[&#39;end&#39;]))][&#39;transcript_id&#39;].values
+
+    # transcripts partially within in the region of interest
+    tmp2 = genes[(genes[&#39;seqname&#39;] == chromosome) &amp;
+            (((genes[&#39;start&#39;] &gt;= start) &amp;
+              (genes[&#39;start&#39;] &lt;= end)) |
+             ((genes[&#39;end&#39;] &gt;= start) &amp;
+              (genes[&#39;end&#39;] &lt;= end)))][&#39;transcript_id&#39;].values
+
+    transcript_ids = np.union1d(tmp,tmp2)
+
+    for n,transcript_id in enumerate(transcript_ids):
+
+        pieces = genes[genes[&#39;transcript_id&#39;] == transcript_id]
+        tmp = genes[genes[&#39;transcript_id&#39;] == transcript_id]
+
+        draw_rectangle(ax,(tmp[&#39;start&#39;].min(),n-0.025),
+                       tmp[&#39;start&#39;].max()-tmp[&#39;start&#39;].min(),
+                       0.05)
+
+        # draw arrow heads to represent the directionality
+        current_position = (max(tmp[&#39;start&#39;].min(),start)+
+                            0.01*(end-start))
+        while current_position &lt;= min(end,tmp[&#39;start&#39;].max()):
+            if tmp[&#39;strand&#39;].iloc[0] == &#39;+&#39;:
+                ax.plot([current_position-0.002*(end-start),
+                         current_position,
+                         current_position-0.002*(end-start)],
+                        [n+0.125,n,n-0.125],
+                        lw=0.1,c=&#39;k&#39;)
+            elif tmp[&#39;strand&#39;].iloc[0] == &#39;-&#39;:
+                ax.plot([current_position+0.002*(end-start),
+                         current_position,
+                         current_position+0.002*(end-start)],
+                        [n+0.125,n,n-0.125],
+                        lw=0.1,c=&#39;k&#39;)
+            current_position += 0.01*(end-start)
+
+        # draw gene name
+        # fits the region of interest
+        if tmp[&#39;start&#39;].min() &gt; start and tmp[&#39;end&#39;].max() &lt; end:
+            draw_name(ax,((tmp[&#39;end&#39;].max()+tmp[&#39;start&#39;].min())*0.5,
+                          n-0.5),
+                      pieces[gene_name_field].iloc[0],kwargs)
+        else: # does not fit the region of interest
+            if tmp[&#39;strand&#39;].iloc[0] == &#39;+&#39;:
+                if (tmp[&#39;start&#39;].min() &lt;= start and
+                    tmp[&#39;end&#39;].max() &gt;= end):
+                    draw_name(ax,((end+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;start&#39;].min() &lt;= start:
+                    draw_name(ax,((tmp[&#39;end&#39;].max()+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;start&#39;].max() &gt;= end:
+                    draw_name(ax,((end+tmp[&#39;start&#39;].min())*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+            else:
+                if (tmp[&#39;end&#39;].min() &lt;= start and
+                    tmp[&#39;start&#39;].max() &gt;= end):
+                    draw_name(ax,((end+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;start&#39;].max() &lt; end:
+                    draw_name(ax,((tmp[&#39;start&#39;].max()+start)*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+                elif tmp[&#39;end&#39;].min() &gt; start:
+                    draw_name(ax,((end+tmp[&#39;end&#39;].min())*0.5,n-0.5),
+                              pieces[gene_name_field].iloc[0],kwargs)
+
+        # draw exons and CDSs
+        for _,piece in pieces.iterrows():
+            if piece[&#39;feature&#39;] == &#39;exon&#39;:
+                draw_rectangle(ax,(piece[&#39;start&#39;],n-0.125),
+                               piece[&#39;end&#39;]-piece[&#39;start&#39;],
+                               0.25)
+            elif piece[&#39;feature&#39;] == &#39;CDS&#39;:
+                draw_rectangle(ax,(piece[&#39;start&#39;],n-0.25),
+                               piece[&#39;end&#39;]-piece[&#39;start&#39;],
+                               0.5)
+
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_xlim(start,end)
+    if min_height is not None:
+        if min_height &lt; len(transcript_ids):
+            logging.warning((&#39;%d genes would not be visible due &#39;
+                             &#39;to min_height=%d, discard min_height.&#39;),
+                            len(transcript_ids)-min_height,min_height)
+            ax.set_ylim(-0.5,min(len(transcript_ids),1)-0.5)
+        else:
+            ax.set_ylim(-(min_height-len(transcript_ids))-0.5,
+                        len(transcript_ids)-0.5)
+    else:
+        ax.set_ylim(-0.5,min(len(transcript_ids),1)-0.5)
+
+    if not frame:
+        hide_frame(ax)</code></pre>
+</details>
+</dd>
+<dt id="raesymatto.visualizations.draw_loops"><code class="name flex">
+<span>def <span class="ident">draw_loops</span></span>(<span>ax: matplotlib.axes._axes.Axes, chromosome: str, start: int, end: int, bed: pandas.core.frame.DataFrame, fontsize: int = 7, ymin: float = 1, ymax: float = 10, flip: bool = False, frame: bool = True, ylabel: Optional[str] = None, kwargs: Optional[dict] = None) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws loops.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>plt.Axes</code></dt>
+<dd>Axes to be used.</dd>
+<dt><strong><code>chromosome</code></strong> :&ensp;<code>str</code></dt>
+<dd>Chromosome of interest.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>Start coordinate.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>End coordinate.</dd>
+<dt><strong><code>bed</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Data in Browser Extensible Data (BED) format.</dd>
+<dt><strong><code>fontsize</code></strong></dt>
+<dd>Font size.</dd>
+<dt><strong><code>ymin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum loop height.</dd>
+<dt><strong><code>ymax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum loop height.</dd>
+<dt><strong><code>flip</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Flip the y axis.</dd>
+<dt><strong><code>frame</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Draw spines.</dd>
+<dt><strong><code>ylabel</code></strong> :&ensp;<code>Optional[str]</code></dt>
+<dd>Y axis label.</dd>
+<dt><strong><code>kwargs</code></strong> :&ensp;<code>Optional[dict]</code></dt>
+<dd>Additional arguments passed
+to mpl.patches.PathPatch.</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_loops(ax:plt.Axes,chromosome:str,start:int,end:int,
+               bed:pd.DataFrame,fontsize:int=7,
+               ymin:float=1,ymax:float=10,flip:bool=False,
+               frame:bool=True,ylabel:Optional[str]=None,
+               kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws loops.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        bed (pd.DataFrame): Data in Browser Extensible Data (BED) format.
+        fontsize: Font size.
+        ymin (float): Minimum loop height.
+        ymax (float): Maximum loop height.
+        flip (bool): Flip the y axis.
+        frame (bool): Draw spines.
+        ylabel (Optional[str]): Y axis label.
+        kwargs (Optional[dict]): Additional arguments passed
+            to mpl.patches.PathPatch.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;lw&#39;:0.5,
+                  &#39;ec&#39;:&#39;red&#39;,
+                  &#39;fc&#39;: &#39;none&#39;,
+                  &#39;alpha&#39;:1.0}
+
+    intervals = bed[(bed.iloc[:,0] == chromosome) &amp;
+                    (((bed.iloc[:,1] &gt;= start) &amp;
+                      (bed.iloc[:,1] &lt;= end)) |
+                     ((bed.iloc[:,2] &gt;= start) &amp;
+                      (bed.iloc[:,2] &lt;= end)) |
+                     ((start &gt;= bed.iloc[:,[1,2]].min(axis=1)) &amp;
+                      (end &lt;= bed.iloc[:,[1,2]].max(axis=1))))].values
+
+    length_max = (intervals[:,2]-intervals[:,1]).max()
+
+    Path = mpl.path.Path
+    for interval in intervals:
+        pp = (mpl.patches
+              .PathPatch(Path([(interval[1],0),
+                               ((interval[1]+interval[2])/2,
+                                max([ymin,2.0*ymax*
+                                     (interval[2]-interval[1])/
+                                     length_max])),
+                               (interval[2],0)],[Path.MOVETO,
+                                                 Path.CURVE3,
+                                                 Path.CURVE3]),
+                         transform=ax.transData,
+                         **kwargs))
+        ax.add_patch(pp)
+
+    ax.set_ylabel(ylabel,fontsize=fontsize)
+
+    ax.set_xlim([start,end])
+    ax.set_ylim([0,ymax*1.05])
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    if flip:
+        ax.invert_yaxis()
+
+    if not frame:
+        hide_frame(ax)</code></pre>
+</details>
+</dd>
+<dt id="raesymatto.visualizations.draw_region_information"><code class="name flex">
+<span>def <span class="ident">draw_region_information</span></span>(<span>ax: matplotlib.axes._axes.Axes, chromosome: str, start: int, end: int, fontsize: int = 7, kwargs: Optional[dict] = None) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws region information.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>plt.Axes</code></dt>
+<dd>Axes to be used.</dd>
+<dt><strong><code>chromosome</code></strong> :&ensp;<code>str</code></dt>
+<dd>Chromosome of interest.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>Start coordinate.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>int</code></dt>
+<dd>End coordinate.</dd>
+<dt><strong><code>fontsize</code></strong> :&ensp;<code>int</code></dt>
+<dd>Font size.</dd>
+<dt><strong><code>kwargs</code></strong> :&ensp;<code>Optional[dict]</code></dt>
+<dd>Additional arguments passed to Axes.arrow.</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_region_information(ax:plt.Axes,chromosome:str,
+                            start:int,end:int,fontsize:int=7,
+                            kwargs:Optional[dict]=None) -&gt; None:
+    &#34;&#34;&#34;Draws region information.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+        chromosome (str): Chromosome of interest.
+        start (int): Start coordinate.
+        end (int): End coordinate.
+        fontsize (int): Font size.
+        kwargs (Optional[dict]): Additional arguments passed to Axes.arrow.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    if kwargs is None:
+        kwargs = {&#39;lw&#39;:0.25}
+
+    # region text
+    ax.text((end+start)*0.5,2.5,&#39;%s:%s-%s&#39;%(chromosome,
+                                            &#39;{:,d}&#39;.format(start),
+                                            &#39;{:,d}&#39;.format(end)),
+            va=&#39;center&#39;,ha=&#39;center&#39;,fontsize=fontsize)
+
+    # scale bar with the tee arrow heads
+    scalebar_length = (10**(len(&#39;%.0f&#39;%((end-start)*0.2))-1)*
+                       np.round(((end-start)*0.2)/
+                                10**(len(&#39;%.0f&#39;%((end-start)*0.2))-1)))
+    # arrow body
+    ax.arrow(x=end-scalebar_length-0.05,y=1,
+             dx=scalebar_length,dy=0,**kwargs)
+    # tee arrow heads
+    ax.arrow(x=end-0.05,y=1.25,dx=0,dy=-0.5,**kwargs)
+    ax.arrow(x=end-scalebar_length-0.05,y=1.25,dx=0,dy=-0.5,**kwargs)
+
+    # label the scale bar
+    multiplier,prefix = (Units(
+        overrides={-2:{&#39;multiplier&#39;:1e-0,
+                       &#39;prefix&#39;:&#39;&#39;},
+                   -1:{&#39;multiplier&#39;:1e-0,
+                       &#39;prefix&#39;:&#39;&#39;},
+                   1:{&#39;multiplier&#39;:1e-0,
+                      &#39;prefix&#39;:&#39;&#39;},
+                   2:{&#39;multiplier&#39;:1e-0,
+                      &#39;prefix&#39;:&#39;&#39;}})
+                         .convert(scalebar_length))
+    ax.text(x=end-scalebar_length-(end-start)*0.01,
+            y=1,
+            s=&#39;%.0f %sb&#39;%(multiplier,prefix),
+            ha=&#39;right&#39;,va=&#39;center&#39;,fontsize=fontsize)
+
+    ax.set_xlim(start,end)
+    ax.set_ylim(0,5)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    hide_frame(ax)</code></pre>
+</details>
+</dd>
+<dt id="raesymatto.visualizations.hide_frame"><code class="name flex">
+<span>def <span class="ident">hide_frame</span></span>(<span>ax: matplotlib.axes._axes.Axes) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Hides spines.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ax</code></strong> :&ensp;<code>plt.Axes</code></dt>
+<dd>Axes to be used.</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hide_frame(ax:plt.Axes) -&gt; None:
+    &#34;&#34;&#34;Hides spines.
+
+    Args:
+        ax (plt.Axes): Axes to be used.
+
+    Returns:
+
+    Raises:
+    &#34;&#34;&#34;
+    ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;left&#39;].set_color(&#39;none&#39;)
+    ax.spines[&#39;bottom&#39;].set_color(&#39;none&#39;)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="raesymatto" href="index.html">raesymatto</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="raesymatto.visualizations.draw_bed" href="#raesymatto.visualizations.draw_bed">draw_bed</a></code></li>
+<li><code><a title="raesymatto.visualizations.draw_boxes" href="#raesymatto.visualizations.draw_boxes">draw_boxes</a></code></li>
+<li><code><a title="raesymatto.visualizations.draw_bw" href="#raesymatto.visualizations.draw_bw">draw_bw</a></code></li>
+<li><code><a title="raesymatto.visualizations.draw_gene_models" href="#raesymatto.visualizations.draw_gene_models">draw_gene_models</a></code></li>
+<li><code><a title="raesymatto.visualizations.draw_loops" href="#raesymatto.visualizations.draw_loops">draw_loops</a></code></li>
+<li><code><a title="raesymatto.visualizations.draw_region_information" href="#raesymatto.visualizations.draw_region_information">draw_region_information</a></code></li>
+<li><code><a title="raesymatto.visualizations.hide_frame" href="#raesymatto.visualizations.hide_frame">hide_frame</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
