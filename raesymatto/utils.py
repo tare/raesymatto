@@ -1,5 +1,4 @@
-"""Metric (SI) prefixes.
-"""
+"""Metric (SI) prefixes."""
 import math
 from typing import Optional
 
@@ -11,13 +10,9 @@ class Units:
     Adapted from https://stackoverflow.com/a/20427577
 
     Args:
-        overrides (Optional[dict]): Manual overrides.
-            Might be helpful for disabling certain prefixes.
-            For example, overrides={1:{'multiplier':1e-0,'prefix':''}}
+        overrides (Optional[dict]): Manual overrides. Might be helpful for
+            disabling certain prefixes.
 
-    Returns:
-
-    Raises:
     """
     def __init__(self,overrides:Optional[dict]=None) -> None:
         """
@@ -84,10 +79,6 @@ class Units:
         Args:
             number (float): Number of interest.
 
-        Returns:
-            tuple[int,str]: Multiplier and prefix.
-
-        Raises:
         """
         exponent = math.floor(math.log10(abs(number)))
 

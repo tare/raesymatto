@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-"""Foo.
-"""
+"""Raesymatto."""
 import os
 from distutils.core import setup
 

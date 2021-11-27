@@ -1,5 +1,4 @@
-"""Visualization related functions.
-"""
+"""Visualization related functions."""
 import logging
 from typing import Optional, Tuple
 
@@ -18,9 +17,6 @@ def hide_frame(ax:plt.Axes) -> None:
     Args:
         ax (plt.Axes): Axes to be used.
 
-    Returns:
-
-    Raises:
     """
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
@@ -40,9 +36,6 @@ def draw_region_information(ax:plt.Axes,chromosome:str,
         fontsize (int): Font size.
         kwargs (Optional[dict]): Additional arguments passed to Axes.arrow.
 
-    Returns:
-
-    Raises:
     """
     if kwargs is None:
         kwargs = {'lw':0.25}
@@ -110,9 +103,6 @@ def draw_bw(ax:plt.Axes,chromosome:str,start:int,end:int,
         kwargs (Optional[dict]): Additional arguments passed
             to Axes.fill_between.
 
-    Returns:
-
-    Raises:
     """
     if kwargs is None:
         kwargs = {'facecolor':'gray',
@@ -163,9 +153,6 @@ def draw_bed(ax:plt.Axes,chromosome:str,start:int,end:int,
         kwargs (Optional[dict]): Additional arguments passed
             to mpl.patches.Rectangle.
 
-    Returns:
-
-    Raises:
     """
     if kwargs is None:
         kwargs = {'facecolor':'gray',
@@ -270,9 +257,6 @@ def draw_boxes(ax:plt.Axes,chromosome:str,start:int,end:int,
         kwargs (Optional[dict]): Additional arguments passed
             to mpl.patches.Rectangle.
 
-    Returns:
-
-    Raises:
     """
     if kwargs is None:
         kwargs = {'facecolor':'gray',
@@ -330,9 +314,6 @@ def draw_loops(ax:plt.Axes,chromosome:str,start:int,end:int,
         kwargs (Optional[dict]): Additional arguments passed
             to mpl.patches.PathPatch.
 
-    Returns:
-
-    Raises:
     """
     if kwargs is None:
         kwargs = {'lw':0.5,
@@ -399,9 +380,6 @@ def draw_gene_models(ax:plt.Axes,chromosome:str,start:int,end:int,
         frame (bool): Draw spines.
         kwargs (Optional[dict]): Additional arguments passed to Axes.text.
 
-    Returns:
-
-    Raises:
     """
     if kwargs is None:
         kwargs = {'ha':'center',
@@ -418,6 +396,7 @@ def draw_gene_models(ax:plt.Axes,chromosome:str,start:int,end:int,
             position (Tuple[float,float]): Position.
             name (str): Name.
             kwargs (dict): Additional arguments passed to Axes.text.
+
         """
         if kwargs is None:
             kwargs = {'ha':'center',
@@ -441,9 +420,6 @@ def draw_gene_models(ax:plt.Axes,chromosome:str,start:int,end:int,
             kwargs (Optional[dict]): Additional arguments
                 passed to mpl.patch.Rectangle.
 
-        Returns:
-
-        Raises:
         """
         if kwargs is None:
             kwargs = {'linewidth':0,
