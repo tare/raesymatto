@@ -82,7 +82,7 @@ class Units:
         """Returns multiplier and prefix.
 
         Args:
-            number (float): Metric (SI) prefixes.
+            number (float): Number of interest.
 
         Returns:
             tuple[int,str]: Multiplier and prefix.
