@@ -36,6 +36,15 @@ class Units:
     See https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
 
     Adapted from https://stackoverflow.com/a/20427577
+
+    Args:
+        overrides (Optional[dict]): Manual overrides.
+            Might be helpful for disabling certain prefixes.
+            For example, overrides={1:{&#39;multiplier&#39;:1e-0,&#39;prefix&#39;:&#39;&#39;}}
+
+    Returns:
+
+    Raises:
     &#34;&#34;&#34;
     def __init__(self,overrides:Optional[dict]=None) -&gt; None:
         &#34;&#34;&#34;
@@ -133,7 +142,16 @@ class Units:
 <dd>
 <div class="desc"><p>Provides an interface to metric prefixes.</p>
 <p>See <a href="https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes">https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes</a></p>
-<p>Adapted from <a href="https://stackoverflow.com/a/20427577">https://stackoverflow.com/a/20427577</a></p></div>
+<p>Adapted from <a href="https://stackoverflow.com/a/20427577">https://stackoverflow.com/a/20427577</a></p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>overrides</code></strong> :&ensp;<code>Optional[dict]</code></dt>
+<dd>Manual overrides.
+Might be helpful for disabling certain prefixes.
+For example, overrides={1:{'multiplier':1e-0,'prefix':''}}</dd>
+</dl>
+<p>Returns:</p>
+<p>Raises:</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -144,6 +162,15 @@ class Units:
     See https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
 
     Adapted from https://stackoverflow.com/a/20427577
+
+    Args:
+        overrides (Optional[dict]): Manual overrides.
+            Might be helpful for disabling certain prefixes.
+            For example, overrides={1:{&#39;multiplier&#39;:1e-0,&#39;prefix&#39;:&#39;&#39;}}
+
+    Returns:
+
+    Raises:
     &#34;&#34;&#34;
     def __init__(self,overrides:Optional[dict]=None) -&gt; None:
         &#34;&#34;&#34;

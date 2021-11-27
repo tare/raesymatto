@@ -9,6 +9,15 @@ class Units:
     See https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
 
     Adapted from https://stackoverflow.com/a/20427577
+
+    Args:
+        overrides (Optional[dict]): Manual overrides.
+            Might be helpful for disabling certain prefixes.
+            For example, overrides={1:{'multiplier':1e-0,'prefix':''}}
+
+    Returns:
+
+    Raises:
     """
     def __init__(self,overrides:Optional[dict]=None) -> None:
         """
