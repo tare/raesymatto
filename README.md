@@ -12,5 +12,5 @@ $ pip install git+https://github.com/tare/raesymatto.git
 
 ### Usage
 
-*More* extensive documentation is coming soon. 
+*More* extensive [documentation](https://htmlpreview.github.io/?https://github.com/tare/raesymatto/main/docs/raesymatto/index.html) is coming soon. 
 For now please see [Notebook.ipynb](notebooks/Notebook.ipynb).
